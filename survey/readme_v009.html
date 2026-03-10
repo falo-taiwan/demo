@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FALO Survey System v0.09 | AI Native 資料架構示範</title>
+    <!-- 使用 Tailwind CSS 加速開發 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 使用 Inter 字體提升專業感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Force Color Palette */
+        .color-google-blue { color: #4285F4; }
+        .bg-google-blue { background-color: #4285F4; }
+        .color-google-red { color: #DB4437; }
+        .bg-google-red { background-color: #DB4437; }
+        .color-google-yellow { color: #F4B400; }
+        .bg-google-yellow { background-color: #F4B400; }
+        .color-google-green { color: #0F9D58; }
+        .bg-google-green { background-color: #0F9D58; }
+        .color-gold { color: #D4AF37; }
+        .bg-gold { background-color: #D4AF37; }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4285F4 0%, #0F9D58 50%, #F4B400 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-padding {
+            padding: 100px 20px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- 導覽列 -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="flex">
+                    <span class="w-3 h-3 bg-google-blue rounded-full"></span>
+                    <span class="w-3 h-3 bg-google-red rounded-full -ml-1"></span>
+                    <span class="w-3 h-3 bg-google-yellow rounded-full -ml-1"></span>
+                    <span class="w-3 h-3 bg-google-green rounded-full -ml-1"></span>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight">FALO <span class="text-indigo-600">Survey</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#intro" class="hover:text-indigo-600 transition-colors">系統介紹</a>
+                <a href="#build" class="hover:text-indigo-600 transition-colors">模仿建立</a>
+                <a href="#advanced" class="hover:text-indigo-600 transition-colors">進階學習</a>
+            </div>
+            <a href="#teaching" class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-slate-800 transition-all">教學場景</a>
+        </div>
+    </nav>
+
+    <!-- 1. Hero 首屏 -->
+    <section class="pt-40 pb-24 text-center px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 rounded-full border border-indigo-100">
+                🚀 Version 0.09 | AI Native Survey Framework
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
+                AI 時代的問卷系統 <br>
+                <span class="gradient-text text-3xl md:text-5xl block mt-4">不只是收集資料，而是生成語意資料庫。</span>
+            </h1>
+            <p class="text-xl text-slate-500 mb-10 leading-relaxed max-w-3xl mx-auto italic font-medium">
+                "Data is no longer designed for databases. It is designed for AI understanding."
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#intro" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-lg hover:bg-indigo-700 transition-all">
+                    了解系統運作
+                </a>
+                <a href="#build" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all">
+                    開始模仿建立
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. What is this system (New Section) -->
+    <section id="intro" class="section-padding bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="p-10 bg-slate-50 rounded-[40px] border border-slate-100 card-shadow">
+                <h2 class="text-3xl font-bold mb-6 text-slate-900">What is FALO Survey System?</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    FALO Survey System 是一個 **AI Friendly 問卷系統範例**。它利用輕量級的前端 HTML 結合 Google 生態系（Apps Script, Sheet, Drive），建立一個可以直接供 AI 進行深度分析的資料採集管道。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-indigo-600 flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i> 主要目的
+                        </h4>
+                        <ul class="space-y-2 text-sm text-slate-500">
+                            <li>• 讓初學者理解 **AI Data Pipeline** 的運作邏輯</li>
+                            <li>• 提供一個 **可快速模仿與部署** 的完整範例系統</li>
+                            <li>• 示範如何從源頭就設計出 **AI 可讀** 的資料格式</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-indigo-600 flex items-center gap-2">
+                            <i data-lucide="layers" class="w-5 h-5"></i> 核心技術棧
+                        </h4>
+                        <p class="text-sm text-slate-500">
+                            HTML 前端 + Google Apps Script API + Google Sheet 儲存 + Google Drive 附件管理。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Core Features (New Section) -->
+    <section id="features" class="section-padding bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Core Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-blue-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="upload-cloud" class="color-google-blue"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">Anonymous Upload</h4>
+                    <p class="text-sm text-slate-500">支援免登入上傳附件至 Drive，打破原生表單限制。</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-red-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="brain" class="color-google-red"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">Semantic Record</h4>
+                    <p class="text-sm text-slate-500">每一筆紀錄皆包含完整語意上下文，供 AI 極速解析。</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-green-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="table" class="color-google-green"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">Sheet Storage</h4>
+                    <p class="text-sm text-slate-500">資料直接落地於 Google Sheet，實現低成本持久化儲存。</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-yellow-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="hard-drive" class="color-google-yellow"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">Drive Integration</h4>
+                    <p class="text-sm text-slate-500">自動建立資料夾結構，將檔案與問卷資料精準對位。</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-indigo-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="key" class="text-indigo-600"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">Identity Trio</h4>
+                    <p class="text-sm text-slate-500">透過 ID/PIN/Reward Code 組合，完成匿名身份與兌換機制。</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="p-8 bg-white rounded-3xl border border-slate-100 card-shadow">
+                    <div class="w-10 h-10 bg-slate-50 flex items-center justify-center rounded-xl mb-6">
+                        <i data-lucide="zap" class="text-slate-900"></i>
+                    </div>
+                    <h4 class="font-bold mb-3">AI Ready Structure</h4>
+                    <p class="text-sm text-slate-500">內建三層分隔設計，讓資料無需處理即可直接進行分析。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Why not Google Forms (Modified) -->
+    <section id="why" class="section-padding bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-8">為什麼不是一般 Google Forms？</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="p-8 border-2 border-slate-50 rounded-3xl">
+                    <h4 class="font-bold mb-4 color-google-blue">Google Forms</h4>
+                    <p class="text-sm text-slate-500 mb-4 leading-relaxed">這是一套成熟的 **資料收集工具**。適合一般快速統計，但難以自定義資料儲存的語意結構與匿名檔案管道。</p>
+                </div>
+                <div class="p-8 border-2 border-indigo-50 bg-indigo-50/20 rounded-3xl">
+                    <h4 class="font-bold mb-4 text-indigo-600">FALO Survey System</h4>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">這是一個 **AI Data Pipeline 範例**。它示範了從前端到後端如何為了 AI 理解而進行資料優化，是建構 AI 系統的基礎架構。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. System Workflow (New Section) -->
+    <section id="workflow" class="section-padding bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-12">System Workflow</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                <div class="px-6 py-4 bg-white rounded-2xl border border-slate-100 shadow-sm font-bold text-sm">User Form</div>
+                <i data-lucide="chevron-right" class="text-slate-300 hidden md:block"></i>
+                <div class="px-6 py-4 bg-slate-900 text-white rounded-2xl shadow-sm font-bold text-sm">HTML Frontend</div>
+                <i data-lucide="chevron-right" class="text-slate-300 hidden md:block"></i>
+                <div class="px-6 py-4 bg-google-blue text-white rounded-2xl shadow-sm font-bold text-sm">GAS API</div>
+                <i data-lucide="chevron-right" class="text-slate-300 hidden md:block"></i>
+                <div class="px-6 py-4 bg-google-green text-white rounded-2xl shadow-sm font-bold text-sm">Google Sheet</div>
+                <i data-lucide="chevron-right" class="text-slate-300 hidden md:block"></i>
+                <div class="px-6 py-4 bg-google-yellow text-white rounded-2xl shadow-sm font-bold text-sm">Google Drive</div>
+                <i data-lucide="chevron-right" class="text-slate-300 hidden md:block"></i>
+                <div class="px-6 py-4 bg-indigo-600 text-white rounded-2xl shadow-sm font-bold text-sm animate-pulse">AI Analysis</div>
+            </div>
+            <p class="mt-8 text-slate-400 text-sm">從數據採集到語意落地的自動化管道</p>
+        </div>
+    </section>
+
+    <!-- 6. How to copy and build your own (New Section) -->
+    <section id="build" class="section-padding bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-6">How to Copy & Build Your Own</h2>
+                    <p class="text-slate-500 leading-relaxed mb-8">
+                        本系統的設計初衷是讓每位學員都能 **「模仿式開發」**。透過簡單的三步驟，你就能將這套 AI Data Pipeline 部署為個人專屬的版本。
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-8 h-8 bg-indigo-600 text-white flex items-center justify-center rounded-full flex-shrink-0 text-xs font-bold">1</div>
+                            <div>
+                                <h5 class="font-bold">從範例開始 (Start from Example)</h5>
+                                <p class="text-xs text-slate-400">老師提供一套 100% 穩定且可運行的範例系統。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-8 h-8 bg-indigo-600 text-white flex items-center justify-center rounded-full flex-shrink-0 text-xs font-bold">2</div>
+                            <div>
+                                <h5 class="font-bold">透過 AI 修改 (AI Driven Mutation)</h5>
+                                <p class="text-xs text-slate-400">學員使用 AI 修改 HTML 問卷內容，進行客製化調整。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-8 h-8 bg-indigo-600 text-white flex items-center justify-center rounded-full flex-shrink-0 text-xs font-bold">3</div>
+                            <div>
+                                <h5 class="font-bold">部署你的版本 (Deploy Your Version)</h5>
+                                <p class="text-xs text-slate-400">將修改後的代碼與後端 API 連結，生成專屬服務。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 p-8 bg-slate-50 rounded-[40px] border border-slate-100 text-center">
+                    <h4 class="font-bold text-slate-800 mb-4">Example Driven Development</h4>
+                    <p class="text-sm text-slate-500 mb-6">「模仿」是掌握 AI 系統設計最快的一條路。</p>
+                    <i data-lucide="copy" class="w-20 h-20 text-indigo-200 mx-auto"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Vibe Coding -->
+    <section id="vibe-coding" class="section-padding bg-slate-900 text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+            <div class="flex-1 z-10">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">Vibe Coding</h2>
+                <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                    AI 時代的開發模式是：**Example → Modify → Deploy**。我們不再從白紙開始，而是從一個好的「體感 (Vibe)」範例開始，透過對話進行功能的突變與升級。
+                </p>
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/10">
+                    <p class="text-sm italic text-indigo-300">"在課程中，老師提供穩定範例，學員透過 AI 修改，進而產生自己的版本。"</p>
+                </div>
+            </div>
+            <div class="flex-1 w-full">
+                <div class="p-8 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm card-shadow font-mono text-sm leading-relaxed text-slate-400">
+                    // AI Mutation Prompt <br>
+                    請參考目前的 FALO v0.09 網頁：<br>
+                    1. 將主題修改為「學員課後滿意度調查」<br>
+                    2. 增加一個「推薦程度」的評分區域<br>
+                    3. 保持語意資料結構 (;;; 與 ||) 不變
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Data Structure -->
+    <section id="data-structure" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">AI Friendly Data Encoding</h2>
+                <p class="text-slate-500">為什麼不直接用 JSON？因為三層分隔具備極佳的 AI 解析經濟性與人類可讀性。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl border border-slate-100 bg-slate-50 relative group">
+                    <div class="absolute -top-4 left-8 px-4 py-1 bg-google-blue text-white text-[10px] font-black rounded-lg">LEVEL 1</div>
+                    <h4 class="text-4xl font-black mb-4 color-google-blue">,</h4>
+                    <h5 class="font-bold text-lg mb-2">CSV 欄位分隔</h5>
+                    <p class="text-sm text-slate-500">確保資料可直接匯入所有主流資料庫與表格軟體。</p>
+                </div>
+                <div class="p-8 rounded-3xl border border-slate-100 bg-slate-50 relative group">
+                    <div class="absolute -top-4 left-8 px-4 py-1 bg-google-green text-white text-[10px] font-black rounded-lg">LEVEL 2</div>
+                    <h4 class="text-4xl font-black mb-4 color-google-green">;;;</h4>
+                    <h5 class="font-bold text-lg mb-2">子鍵值對區分</h5>
+                    <p class="text-sm text-slate-500">區分題目與答案，讓 AI 在解析時能極速精準分割標籤。</p>
+                </div>
+                <div class="p-8 rounded-3xl border border-slate-100 bg-slate-50 relative group">
+                    <div class="absolute -top-4 left-8 px-4 py-1 bg-google-yellow text-white text-[10px] font-black rounded-lg">LEVEL 3</div>
+                    <h4 class="text-4xl font-black mb-4 color-google-yellow">||</h4>
+                    <h5 class="font-bold text-lg mb-2">多選答案集合</h5>
+                    <p class="text-sm text-slate-500">完整呈現多選答案清單，不破壞 CSV 基礎結構。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Anonymous Identity Model -->
+    <section id="identity" class="section-padding bg-slate-50">
+        <div class="max-w-5xl mx-auto px-6 bg-white p-12 rounded-[40px] border border-slate-100 card-shadow flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-6">Anonymous Identity Model</h2>
+                <p class="text-slate-500 leading-relaxed mb-6">
+                    這是一套 **Anonymous Account System**。使用者不需註冊或提供 Email，透過 **User ID / PIN / Reward Code** 即可在維護隱私的同時，完成資料追蹤與活動兌換。
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-slate-400 block mb-1">USER ID</span>
+                        <code class="text-xs font-bold text-slate-800">FALO-9281</code>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl text-center">
+                        <span class="text-[10px] font-bold text-slate-400 block mb-1">REWARD</span>
+                        <code class="text-xs font-bold text-indigo-600">SPARK-01</code>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 bg-indigo-600 p-10 rounded-3xl text-white">
+                <h4 class="font-bold mb-4">隱私與驗證的平衡</h4>
+                <p class="text-sm opacity-80 leading-relaxed">我們在不收集個資的前提下，賦予了每筆資料「可驗證性」。這是 AI 活動設計中非常關鍵的一環。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Advanced Concepts (New Section) -->
+    <section id="advanced" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Advanced Concepts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-slate-100 rounded-3xl bg-slate-50">
+                    <h5 class="font-bold text-indigo-600 mb-4">Semantic Record</h5>
+                    <p class="text-sm text-slate-500">每一行資料都是一個獨立的 Context，AI 讀取即能理解全貌。</p>
+                </div>
+                <div class="p-8 border border-slate-100 rounded-3xl bg-slate-50">
+                    <h5 class="font-bold text-indigo-600 mb-4">HITL Data Loop</h5>
+                    <p class="text-sm text-slate-500">人機協作 (Human-In-The-Loop)，人類提供原始數據，AI 轉化為見解。</p>
+                </div>
+                <div class="p-8 border border-slate-100 rounded-3xl bg-slate-50">
+                    <h5 class="font-bold text-indigo-600 mb-4">AI Native Pipeline</h5>
+                    <p class="text-sm text-slate-500">從設計之初就考量 AI 推理成本與格式對位的原生 Pipeline。</p>
+                </div>
+            </div>
+            <p class="text-center mt-12 text-xs text-slate-300 font-mono">這些概念是邁向進階 AI 系統建構者的必經之路。</p>
+        </div>
+    </section>
+
+    <!-- 11. Teaching Scenario -->
+    <section id="teaching" class="section-padding bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">為什麼這套系統適合 AI 教學</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-10 bg-white rounded-[40px] border border-slate-100 card-shadow">
+                    <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="text-indigo-600"></i> 對於老師
+                    </h4>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">這是一個極佳的教學媒介。老師可以示範如何從「工具使用」跨越到「系統建構」，並透過這套範例解釋 AI Friendly Data 的核心價值。</p>
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-slate-300">系統示範 / 架構講解 / Vibe 引導</div>
+                </div>
+                <div class="p-10 bg-white rounded-[40px] border border-slate-100 card-shadow">
+                    <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i data-lucide="user" class="text-indigo-600"></i> 對於學員
+                    </h4>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">學員不再只是聽課，而是能立刻部署屬於自己的 AI 調查系統，並在修改過程中學習 AI 提示詞工程與資料管道邏輯。</p>
+                    <div class="text-[10px] font-bold uppercase tracking-widest text-slate-300">快速部署 / 模仿開發 / 實戰反饋</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. 結尾 CTA -->
+    <section class="section-padding text-center">
+        <div class="max-w-4xl mx-auto px-6 py-20 bg-gradient-to-br from-slate-900 to-indigo-950 rounded-[50px] text-white card-shadow relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+            <h2 class="text-3xl md:text-5xl font-bold mb-8 relative z-10">Start Your AI Native Journey.</h2>
+            <p class="text-indigo-100 mb-10 text-xl opacity-80 relative z-10">
+                從一個好的範例開始，建構你的第一個語意資料管道。
+            </p>
+            <div class="flex justify-center relative z-10">
+                <a href="#build" class="bg-indigo-600 text-white px-12 py-5 rounded-2xl font-bold hover:bg-indigo-700 transition-all flex items-center gap-2 text-lg">
+                    立即開始模仿 <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-16 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-6">
+                <span class="w-2.5 h-2.5 bg-google-blue rounded-full"></span>
+                <span class="w-2.5 h-2.5 bg-google-red rounded-full"></span>
+                <span class="w-2.5 h-2.5 bg-google-yellow rounded-full"></span>
+                <span class="w-2.5 h-2.5 bg-google-green rounded-full"></span>
+                <span class="text-sm font-black uppercase tracking-widest text-slate-400">Force Cheng × FALO AI Team</span>
+            </div>
+            <p class="text-sm text-slate-500 mb-4">
+                © 2026 Force Cheng. All Rights Reserved.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-[11px] font-mono text-slate-300 uppercase tracking-widest">
+                <span>Version: v0.09 Stable Release</span>
+                <span>Last Updated: 2026-03-10</span>
+                <span>Architecture: AI Friendly Data Pipeline</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化 Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
