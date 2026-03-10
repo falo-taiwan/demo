@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"><title>gascode-20260310-1124.html</title></head><body><pre><code>/**
+ * FALO Survey Data Spec v1 - Backend for Google Sheets
+ * Author: Force Cheng (FF)
+ * Version: v0.03.3 (Hard Auth Fix)
+ * Update: 2026/03/10
+ * * [強制權限聲明 - 不要刪除以下註解]
+ * @OnlyCurrentDoc
+ * https://www.googleapis.com/auth/drive
+ * https://www.googleapis.com/auth/spreadsheets
+ */
+
+const SHEET_NAME = &quot;main&quot;;
+const FOLDER_NAME = &quot;files&quot;; 
+const VERSION = &quot;v0.03&quot;;
+
+/**
+ * [步驟 A] 初始化資料庫與權限
+ * 請在部署「新部署」前執行一次，完成 Drive 權限核准
+ */
+function initDatabase() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // 1. 初始化 main 工作表
+  let sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME);
+  }
+  const header = [&quot;row_type&quot;, &quot;user_id&quot;, &quot;pin&quot;, &quot;reward_code&quot;, &quot;content&quot;];
+  sheet.getRange(1, 1, 1, header.length).setValues([header]);
+  sheet.setFrozenRows(1);
+  sheet.getRange(1, 1, 1, header.length).setFontWeight(&quot;bold&quot;).setBackground(&quot;#f3f4f6&quot;);
+
+  // 2. 觸發權限：建立/檢查資料夾
+  try {
+    const folder = getOrCreateFilesFolder();
+    console.log(&quot;初始化成功！檔案將儲存於: &quot; + folder.getName());
+    console.log(&quot;資料夾連結: &quot; + folder.getUrl());
+  } catch(e) {
+    throw new Error(&quot;Drive 存取授權失敗: &quot; + e.message);
+  }
+}
+
+/**
+ * [步驟 B] 處理前端 POST 請求
+ */
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return ContentService.createTextOutput(JSON.stringify({&quot;status&quot;: &quot;error&quot;, &quot;message&quot;: &quot;No content&quot;})).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const payload = JSON.parse(e.postData.contents);
+    let fileUrl = &quot;&quot;;
+
+    // 處理檔案上傳
+    if (payload.file_data &amp;&amp; payload.file_name) {
+      try {
+        fileUrl = saveFileToDrive(payload.file_data, payload.file_name, payload.user_id);
+      } catch (fileErr) {
+        fileUrl = &quot;Upload Failed: &quot; + fileErr.message;
+      }
+    }
+    
+    payload.file_url = fileUrl;
+    appendSurveyRows(payload);
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      &quot;status&quot;: &quot;success&quot;,
+      &quot;user_id&quot;: payload.user_id
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      &quot;status&quot;: &quot;error&quot;, 
+      &quot;message&quot;: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * 結構化寫入 Sheet
+ */
+function appendSurveyRows(p) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME) || getOrCreateSheet(SHEET_NAME);
+  const rows = [];
+  const common = [p.user_id, p.pin, p.reward_code];
+
+  // Meta
+  rows.push([&quot;meta&quot;, ...common, `timestamp=${p.timestamp};;;version=${VERSION}`]);
+
+  // Q1-Q4
+  const qConfigs = [
+    { id: &quot;q1&quot;, qid: &quot;Q1&quot;, text: &quot;你目前對AI發展與影響的感受最接近哪些？&quot; },
+    { id: &quot;q2&quot;, qid: &quot;Q2&quot;, text: &quot;你目前在工作或學習中使用AI的情況最接近哪些？&quot; },
+    { id: &quot;q3&quot;, qid: &quot;Q3&quot;, text: &quot;如果要在工作或組織中導入AI，你目前遇到的困難有哪些？&quot; },
+    { id: &quot;q4&quot;, qid: &quot;Q4&quot;, text: &quot;如果有一個AI平台，你最希望它提供哪些內容或幫助？&quot; }
+  ];
+
+  qConfigs.forEach(conf =&gt; {
+    const ans = (p[conf.id] || []).join(&quot;||&quot;);
+    const other = (p[conf.id + &quot;_other&quot;] || &quot;&quot;).replace(/;;;/g, &quot; &quot;);
+    const content = `qid=${conf.qid};;;question=${conf.text};;;ans=${ans};;;other=${other}`;
+    rows.push([conf.id, ...common, content]);
+  });
+
+  // Q5
+  const q5Content = `qid=Q5;;;question=如果你有更具體的需求或想法;;;text=${(p.q5_text || &quot;&quot;).replace(/;;;/g, &quot; &quot;)};;;contact=${(p.contact || &quot;&quot;)};;;file=${p.file_url || &quot;&quot;}`;
+  rows.push([&quot;q5&quot;, ...common, q5Content]);
+
+  sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, rows[0].length).setValues(rows);
+}
+
+/**
+ * 儲存 Base64 檔案
+ */
+function saveFileToDrive(base64Full, fileName, userId) {
+  const folder = getOrCreateFilesFolder();
+  const parts = base64Full.split(&quot;,&quot;);
+  const body = parts[1];
+  const contentType = parts[0].split(&quot;:&quot;)[1].split(&quot;;&quot;)[0];
+  
+  const blob = Utilities.newBlob(Utilities.base64Decode(body), contentType, `${userId}_${fileName}`);
+  const file = folder.createFile(blob);
+  
+  return file.getUrl();
+}
+
+/**
+ * 取得 files 資料夾（優化版）
+ */
+function getOrCreateFilesFolder() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const fileId = ss.getId();
+  const parents = DriveApp.getFileById(fileId).getParents();
+  
+  let parentFolder;
+  if (parents.hasNext()) {
+    parentFolder = parents.next();
+  } else {
+    parentFolder = DriveApp.getRootFolder();
+  }
+  
+  const folders = parentFolder.getFoldersByName(FOLDER_NAME);
+  if (folders.hasNext()) {
+    return folders.next();
+  } else {
+    return parentFolder.createFolder(FOLDER_NAME);
+  }
+}
+
+function getOrCreateSheet(name) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(name);
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
+    sheet.getRange(1, 1, 1, 5).setValues([[&quot;row_type&quot;, &quot;user_id&quot;, &quot;pin&quot;, &quot;reward_code&quot;, &quot;content&quot;]]);
+  }
+  return sheet;
+}</code></pre></body></html>
