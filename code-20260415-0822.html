@@ -1,0 +1,1711 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>華苓科技業務拜訪實戰準備報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sage': {
+                            50: '#f6f6f4',
+                            100: '#e8e8e3',
+                            200: '#d1d1c7',
+                            300: '#b3b3a1',
+                            400: '#95957b',
+                            500: '#7d7d5f',
+                            600: '#62624b',
+                            700: '#4f4f3d',
+                            800: '#424234',
+                            900: '#3a3a2f',
+                        },
+                        'slate-custom': {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-right: 1px solid #cbd5e1;
+            z-index: 50;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: #475569;
+            text-decoration: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-link:hover {
+            background-color: rgba(125, 125, 95, 0.1);
+            color: #4f4f3d;
+        }
+        
+        .toc-link.active {
+            background-color: #7d7d5f;
+            color: white;
+        }
+        
+        .toc-link.sub {
+            padding-left: 1.75rem;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        .citation {
+            color: #7d7d5f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #7d7d5f;
+        }
+        
+        .citation:hover {
+            color: #4f4f3d;
+            border-bottom-style: solid;
+        }
+        
+        /* Mermaid diagram styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom Mermaid theme for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px;
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: #64748b;
+            stroke-width: 2px;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: white;
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+        
+        /* Responsive adjustments for mermaid controls */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .toc-sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .hero-grid h1 {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+            }
+            .hero-grid p {
+                font-size: 1rem;
+            }
+            .hero-grid img {
+                height: 12rem;
+            }
+            .relative.z-10.max-w-7xl.mx-auto.px-6.py-12 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-slate-custom-50 text-slate-custom-800">
+    <!-- Table of Contents Sidebar -->
+    <nav class="toc-sidebar">
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-slate-custom-800 mb-4">目錄</h3>
+        <div class="space-y-1">
+          <a href="#hero" class="toc-link">引言</a>
+          <a href="#pain-points" class="toc-link">華苓科技三大業務痛點</a>
+          <a href="#pain-1" class="toc-link sub">跨系統整合與數據孤島</a>
+          <a href="#pain-2" class="toc-link sub">需求多樣化與標準化矛盾</a>
+          <a href="#pain-3" class="toc-link sub">價值傳遞與認知落差</a>
+          <a href="#scenarios" class="toc-link">AI × BPM 銷售場景</a>
+          <a href="#scenario-1" class="toc-link sub">製造業智能月報表</a>
+          <a href="#scenario-2" class="toc-link sub">金融業智能信貸審批</a>
+          <a href="#scenario-3" class="toc-link sub">零售業智能促銷</a>
+          <a href="#roles" class="toc-link">三種切入角色</a>
+          <a href="#role-1" class="toc-link sub">AI × BPM 業務價值設計師</a>
+          <a href="#role-2" class="toc-link sub">智能稽核與內控專家</a>
+          <a href="#role-3" class="toc-link sub">AI治理與ISO策略師</a>
+          <a href="#questions" class="toc-link">五個關鍵提問</a>
+          <a href="#talking-points" class="toc-link">三分鐘開場話術</a>
+          <a href="#conclusion" class="toc-link">核心策略</a>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-slate-custom-200">
+        <p class="text-xs text-slate-custom-600 mb-2">實戰準備報告</p>
+        <p class="text-sm font-medium text-slate-custom-700">華苓科技業務拜訪</p>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="bg-gradient-to-br from-slate-custom-100 to-sage-100">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+          <div class="hero-grid">
+            <div class="space-y-6">
+              <div class="space-y-4">
+                <h1 class="hero-title text-5xl lg:text-6xl font-bold text-slate-custom-800 leading-tight">
+                  華苓科技業務拜訪
+                  <span class="block text-4xl lg:text-5xl mt-2 text-sage-600">實戰準備報告</span>
+                </h1>
+                <p class="text-xl text-slate-custom-600 leading-relaxed max-w-2xl">
+                  從技術導向轉向價值導向：讓客戶發現你剛好補上他們還沒做深的那一塊
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 pt-6">
+                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-sage-200">
+                  <div class="text-2xl font-bold text-sage-700 mb-1">3大痛點</div>
+                  <div class="text-sm text-slate-custom-600">業務視角分析</div>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-sage-200">
+                  <div class="text-2xl font-bold text-sage-700 mb-1">3個場景</div>
+                  <div class="text-sm text-slate-custom-600">AI × BPM 銷售方案</div>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-sage-200">
+                  <div class="text-2xl font-bold text-sage-700 mb-1">5個問題</div>
+                  <div class="text-sm text-slate-custom-600">深度對話引導</div>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-sage-200">
+                  <div class="text-2xl font-bold text-sage-700 mb-1">3分鐘</div>
+                  <div class="text-sm text-slate-custom-600">自然開場話術</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <img src="https://kimi-web-img.moonshot.cn/img/www.axureux.com/4c009183792dd6fd29146178c36852ac71118b22.jpg" alt="抽象科技背景圖" class="w-full h-80 object-cover rounded-2xl shadow-2xl" size="medium" aspect="wide" color="blue" style="photo" query="抽象科技背景" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-custom-800/20 to-transparent rounded-2xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pain Points Section -->
+      <section id="pain-points" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">華苓科技三大業務痛點</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              從客戶端觀察到的核心挑戰，而非技術層面的困難
+            </p>
+          </div>
+
+          <!-- Pain Point 1 -->
+          <div id="pain-1" class="mb-16">
+            <div class="bg-gradient-to-r from-sage-50 to-slate-custom-50 rounded-2xl p-8 border border-sage-200">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-sage-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-network-wired text-white text-lg"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-slate-custom-800 mb-4">跨系統整合與數據孤島困境</h3>
+
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">客戶IT系統老舊化挑戰</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        台灣多數中大型企業的ERP、MES、CRM等核心系統部署年限普遍超過10年，
+                        這些系統在設計之初並未考量開放式API架構，導致系統間的數據交換能力嚴重不足。
+                      </p>
+                      <div class="bg-white rounded-lg p-4 border border-sage-200">
+                        <h5 class="font-semibold text-slate-custom-700 mb-2">商業影響層面</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• 專案導入週期從3個月延長至6-9個月</li>
+                          <li>• 整合成本超出預算，影響投資報酬率</li>
+                          <li>• 客戶選擇「降規」使用，形成「演示即巔峰」落差</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">流程打通的商業阻力</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        從「無紙化」邁向「無人化」的數位轉型過程中，遭遇的商業阻力遠超技術層面的挑戰。
+                        傳統型企業對於將關鍵決策權交由AI系統執行存有深層疑慮。
+                      </p>
+                      <div class="bg-white rounded-lg p-4 border border-sage-200">
+                        <h5 class="font-semibold text-slate-custom-700 mb-2">信任缺口表現</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• 需要長期的教育溝通與漸進式導入</li>
+                          <li>• 人機協作的過渡方案設計困難</li>
+                          <li>• 數據不完整影響AI決策準確性</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pain Point 2 -->
+          <div id="pain-2" class="mb-16">
+            <div class="bg-gradient-to-r from-slate-custom-50 to-sage-50 rounded-2xl p-8 border border-slate-custom-200">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-slate-custom-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-balance-scale text-white text-lg"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-slate-custom-800 mb-4">客戶需求多樣化與產品標準化的矛盾</h3>
+
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">行業差異帶來的客製化壓力</h4>
+                      <div class="space-y-4">
+                        <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                          <h5 class="font-semibold text-sage-700 mb-2">製造業重點</h5>
+                          <p class="text-sm text-slate-custom-600">生產排程優化、品質異常預警、供應鏈協同</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                          <h5 class="font-semibold text-sage-700 mb-2">金融業重點</h5>
+                          <p class="text-sm text-slate-custom-600">風險合規、稽核軌跡完整性、客戶盡職調查</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                          <h5 class="font-semibold text-sage-700 mb-2">零售業重點</h5>
+                          <p class="text-sm text-slate-custom-600">市場反應速度、促銷彈性、庫存動態優化</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">規模化複製的商業難題</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        客製化開發帶來嚴重的商業副作用：專案成本結構惡化、交付週期延長、成功經驗難以複製。
+                        成功案例無法快速複製，限制了市場擴張速度。
+                      </p>
+
+                      <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                        <h5 class="font-semibold text-slate-custom-700 mb-2">商業模式影響</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• 顧問服務比重過高影響毛利率</li>
+                          <li>• 專案導向被視為「勞力密集」</li>
+                          <li>• 資本市場偏好訂閱制收入模式</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pain Point 3 -->
+          <div id="pain-3" class="mb-16">
+            <div class="bg-gradient-to-r from-sage-50 to-slate-custom-50 rounded-2xl p-8 border border-sage-200">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-sage-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-comments text-white text-lg"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-slate-custom-800 mb-4">AI Agent業務價值傳遞與客戶認知落差</h3>
+
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">技術語言與業務語言的鴻溝</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        「Hyper Automation」、「AI Agent」、「流程挖掘」等術語對企業決策者過於抽象，
+                        難以直接連結至具體的商業效益。
+                      </p>
+
+                      <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-4 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 mb-2">信任疑慮</h5>
+                          <p class="text-sm text-slate-custom-600">AI Agent的「自主性」特性引發信任疑慮，決策過程存在內在不確定性與「黑箱」特性</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 mb-2">ROI論證薄弱</h5>
+                          <p class="text-sm text-slate-custom-600">時間節省是否等同於成本降低？員工生產力提升如何衡量？決策品質改善的價值如何量化？</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">市場教育成本高昂</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        企業客戶對AI Agent的認知成熟度參差不齊，部分過度樂觀，部分保守觀望。
+                        業務團隊必須投入大量時間進行期望管理與概念澄清。
+                      </p>
+
+                      <div class="bg-white rounded-lg p-4 border border-sage-200">
+                        <h5 class="font-semibold text-slate-custom-700 mb-2">「演示即巔峰」現象</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• POC階段效果亮眼，實際生產環境成效打折</li>
+                          <li>• POC轉正式專案成功率偏低</li>
+                          <li>• 浪費售前資源與機會成本</li>
+                          <li>• 競爭對手同質化訴求壓縮差異化空間</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scenarios Section -->
+      <section id="scenarios" class="py-16 bg-slate-custom-50">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">三個可銷售的「AI × BPM」具體場景</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              將技術能力轉化為客戶能理解的商業價值，從「談功能」到「談效益」
+            </p>
+          </div>
+
+          <!-- Scenario 1 -->
+          <div id="scenario-1" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-sage-600 to-sage-700 px-8 py-6">
+                <h3 class="text-2xl font-bold text-white flex items-center">
+                  <i class="fas fa-industry mr-3"></i>
+                  製造業智能月報表自動化
+                </h3>
+              </div>
+
+              <div class="p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">場景背景與痛點分析</h4>
+                    <p class="text-slate-custom-600 mb-4">
+                      製造業的營運管理高度依賴定期產出的關鍵績效報表，這些數據散佈於ERP、MES、CRM、HR等多套系統，
+                      各部門需手動登入、抓取數據、複製貼上至Excel進行整理，整個流程耗時3至5天。
+                    </p>
+
+                    <div class="bg-sage-50 rounded-lg p-4 border border-sage-200 mb-4">
+                      <h5 class="font-semibold text-sage-700 mb-2">戰略層面問題</h5>
+                      <p class="text-sm text-slate-custom-600">
+                        碎片化的報表產製方式，使得跨部門的數據關聯分析幾乎不可能。
+                        高階主管即使有心進行整合分析，也面臨巨大的技術與時間障礙。
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">AI × BPM整合解決方案</h4>
+                    <div class="space-y-3">
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-cogs text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">Agentflow BPM</h5>
+                          <p class="text-sm text-slate-custom-600">流程編排中樞，每月1日自動觸發報表產製流程</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">AutoMan RPA</h5>
+                          <p class="text-sm text-slate-custom-600">跨系統自動登入、擷取關鍵數據，統一轉換格式</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-brain text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">AI Agent</h5>
+                          <p class="text-sm text-slate-custom-600">清洗數據、補足缺失值、識別異常指標，撰寫分析摘要</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-file-alt text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">Docpedia</h5>
+                          <p class="text-sm text-slate-custom-600">文件管理與版本控制，自動套用模板產出報表</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">量化效益與商業價值</h4>
+                  <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-slate-custom-300 rounded-lg">
+                      <thead class="bg-sage-600 text-white">
+                        <tr>
+                          <th class="border border-sage-400 px-4 py-3 text-left">指標項目</th>
+                          <th class="border border-sage-400 px-4 py-3 text-center">改善前</th>
+                          <th class="border border-sage-400 px-4 py-3 text-center">改善後</th>
+                          <th class="border border-sage-400 px-4 py-3 text-center">改善幅度</th>
+                        </tr>
+                      </thead>
+                      <tbody class="bg-white">
+                        <tr>
+                          <td class="border border-slate-custom-300 px-4 py-3 font-medium">報表產製時間</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">4-5個工作日</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">2小時內</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center font-semibold text-sage-700">縮短95%以上</td>
+                        </tr>
+                        <tr class="bg-slate-custom-50">
+                          <td class="border border-slate-custom-300 px-4 py-3 font-medium">數據處理人力</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">2-3人專職</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">0.2人監管</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center font-semibold text-sage-700">節省90%</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-slate-custom-300 px-4 py-3 font-medium">數據錯誤率</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">5-10%</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">&lt;1%</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center font-semibold text-sage-700">改善85%</td>
+                        </tr>
+                        <tr class="bg-slate-custom-50">
+                          <td class="border border-slate-custom-300 px-4 py-3 font-medium">年度營運成本</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">約150萬元（人力）</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center">約30萬元（系統）</td>
+                          <td class="border border-slate-custom-300 px-4 py-3 text-center font-semibold text-sage-700">節省80%</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario 2 -->
+          <div id="scenario-2" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-slate-custom-600 to-slate-custom-700 px-8 py-6">
+                <h3 class="text-2xl font-bold text-white flex items-center">
+                  <i class="fas fa-university mr-3"></i>
+                  金融業智能信貸風險評估與審批
+                </h3>
+              </div>
+
+              <div class="p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">場景背景與監管挑戰</h4>
+                    <p class="text-slate-custom-600 mb-4">
+                      金融機構面臨雙重壓力：需要加速審批流程以提升客戶體驗，同時必須嚴格控管信用風險並符合監管要求。
+                      傳統信貸審批高度依賴人工經驗，完整流程可能耗時數日至數週。
+                    </p>
+
+                    <div class="bg-slate-custom-50 rounded-lg p-4 border border-slate-custom-200 mb-4">
+                      <h5 class="font-semibold text-slate-custom-700 mb-2">監管要求日益嚴格</h5>
+                      <ul class="text-sm text-slate-custom-600 space-y-1">
+                        <li>• 完整留存審批過程中的所有決策依據</li>
+                        <li>• 異常處理記錄、主管覆核軌跡</li>
+                        <li>• 演算法公平性、模型可解釋性審查</li>
+                        <li>• 人機協作機制、異常處理程序</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">AI × BPM整合解決方案</h4>
+                    <div class="space-y-4">
+                      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+                        <h5 class="font-semibold text-blue-700 mb-2">數據層</h5>
+                        <p class="text-sm text-slate-custom-600">串接徵信中心、財稅資料中心、公開資訊觀測站等，遵循數據最小化原則</p>
+                      </div>
+                      <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+                        <h5 class="font-semibold text-green-700 mb-2">分析層</h5>
+                        <p class="text-sm text-slate-custom-600">AI Agent實時分析客戶信用數據、行為模式，生成風險評分與分級建議</p>
+                      </div>
+                      <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg p-4 border border-purple-200">
+                        <h5 class="font-semibold text-purple-700 mb-2">決策層</h5>
+                        <p class="text-sm text-slate-custom-600">依風險等級自動路由審批路徑，低風險自動核准，高風險升級人工複核</p>
+                      </div>
+                      <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-4 border border-orange-200">
+                        <h5 class="font-semibold text-orange-700 mb-2">治理層</h5>
+                        <p class="text-sm text-slate-custom-600">完整記錄每筆決策的輸入數據、模型版本、決策依據，支持監理申報</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">量化效益與競爭優勢</h4>
+                  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg p-4 border border-slate-custom-200 text-center">
+                      <div class="text-2xl font-bold text-sage-700 mb-1">70-90%</div>
+                      <div class="text-sm text-slate-custom-600">審批時間縮短</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-slate-custom-200 text-center">
+                      <div class="text-2xl font-bold text-sage-700 mb-1">70%</div>
+                      <div class="text-sm text-slate-custom-600">人工審查減少</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-slate-custom-200 text-center">
+                      <div class="text-2xl font-bold text-sage-700 mb-1">15-25%</div>
+                      <div class="text-sm text-slate-custom-600">違約預測準確度提升</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-slate-custom-200 text-center">
+                      <div class="text-2xl font-bold text-sage-700 mb-1">即時化</div>
+                      <div class="text-sm text-slate-custom-600">稽核報告產出</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario 3 -->
+          <div id="scenario-3" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-sage-600 to-slate-custom-600 px-8 py-6">
+                <h3 class="text-2xl font-bold text-white flex items-center">
+                  <i class="fas fa-shopping-cart mr-3"></i>
+                  零售業智能促銷與庫存動態優化
+                </h3>
+              </div>
+
+              <div class="p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">場景背景與市場壓力</h4>
+                    <p class="text-slate-custom-600 mb-4">
+                      零售業面臨消費者需求快速變化、競爭對手促銷頻繁、供應鏈不確定性升高等複雜環境。
+                      傳統促銷決策依賴經驗判斷，反應週期長且效果難以預測。
+                    </p>
+
+                    <div class="bg-sage-50 rounded-lg p-4 border border-sage-200 mb-4">
+                      <h5 class="font-semibold text-sage-700 mb-2">數據來源極度分散</h5>
+                      <ul class="text-sm text-slate-custom-600 space-y-1">
+                        <li>• POS系統：門店銷售數據</li>
+                        <li>• 電商平台：線上交易與顧客行為</li>
+                        <li>• 社群媒體：品牌聲量與消費者情緒</li>
+                        <li>• 外部數據：天氣預報、節慶日曆</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">AI × BPM整合解決方案</h4>
+                    <div class="space-y-4">
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-chart-line text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">需求預測引擎</h5>
+                          <p class="text-sm text-slate-custom-600">預測未來7-30天各SKU需求量，提供不確定性區間</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-bullhorn text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">促銷效果模擬</h5>
+                          <p class="text-sm text-slate-custom-600">模擬不同促銷方案對銷售量、毛利率的影響</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-warehouse text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">庫存優化決策</h5>
+                          <p class="text-sm text-slate-custom-600">動態計算安全庫存、補貨點、調撥建議</p>
+                        </div>
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-sage-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <i class="fas fa-project-diagram text-white text-sm"></i>
+                        </div>
+                        <div>
+                          <h5 class="font-semibold text-slate-custom-700">BPM執行協調</h5>
+                          <p class="text-sm text-slate-custom-600">自動觸發促銷審批、採購訂單、調撥指令</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <h4 class="text-xl font-semibold text-slate-custom-800 mb-4">量化效益與實施考量</h4>
+                  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                      <div class="text-2xl font-bold text-blue-700 mb-1">數日→數小時</div>
+                      <div class="text-sm text-slate-custom-600">促銷響應速度</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                      <div class="text-2xl font-bold text-green-700 mb-1">20-30%</div>
+                      <div class="text-sm text-slate-custom-600">庫存周轉率提升</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                      <div class="text-2xl font-bold text-purple-700 mb-1">雙降</div>
+                      <div class="text-sm text-slate-custom-600">缺貨率與積壓率</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                      <div class="text-2xl font-bold text-orange-700 mb-1">15-25%</div>
+                      <div class="text-sm text-slate-custom-600">整體毛利率改善</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roles Section -->
+      <section id="roles" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">可切入的三種角色（優先排序）</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              基於自身背景優勢，選擇最適合的價值定位
+            </p>
+          </div>
+
+          <!-- Role 1 -->
+          <div id="role-1" class="mb-16">
+            <div class="bg-gradient-to-r from-sage-50 to-emerald-50 rounded-2xl p-8 border-2 border-sage-300 shadow-lg">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-16 h-16 bg-sage-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-lightbulb text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center mb-4">
+                    <h3 class="text-2xl font-bold text-slate-custom-800 mr-3">首選：AI × BPM業務價值設計師</h3>
+                    <span class="bg-sage-600 text-white px-3 py-1 rounded-full text-sm font-medium">最高優先級</span>
+                  </div>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">角色定位與核心價值</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        <strong>「橋接技術能力與業務需求的轉譯者」</strong>，
+                        專注於「把AI Agent講成客戶聽得懂的生意語言」。
+                        直接回應華苓科技最迫切的業務挑戰——技術能力成熟，但價值傳遞效率低落。
+                      </p>
+
+                      <div class="bg-white rounded-lg p-4 border border-sage-200 mb-4">
+                        <h5 class="font-semibold text-sage-700 mb-2">核心能力匹配</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• <strong>產業知識深度</strong>：理解製造、金融、零售等產業核心流程</li>
+                          <li>• <strong>技術理解廣度</strong>：掌握AI、BPM、RPA等技術能力邊界</li>
+                          <li>• <strong>商業分析能力</strong>：將技術效益轉化為財務指標</li>
+                          <li>• <strong>變革管理敏感度</strong>：識別組織導入阻力與克服策略</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">具體貢獻領域</h4>
+                      <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-3 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">產業模板開發</h5>
+                          <p class="text-xs text-slate-custom-600">發展標準化yet可配置的AI × BPM應用模板，縮短專案導入週期30-50%</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">ROI評估框架</h5>
+                          <p class="text-xs text-slate-custom-600">建立四層效益評估模型，強化銷售階段的價值論證能力</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">客戶共創工作坊</h5>
+                          <p class="text-xs text-slate-custom-600">引導客戶從「想要AI」轉向「想用AI解決什麼業務問題」</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-sage-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">標竿案例包裝</h5>
+                          <p class="text-xs text-slate-custom-600">將成功案例系統化為可複製的「故事架構」，降低教育成本</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Role 2 -->
+          <div id="role-2" class="mb-16">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-200">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-search text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center mb-4">
+                    <h3 class="text-2xl font-bold text-slate-custom-800 mr-3">次選：智能稽核與內控流程專家</h3>
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">稽核專業切入</span>
+                  </div>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">角色定位與專業深度</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        <strong>「讓AI Agent符合內控要求，而非繞過內控」</strong>，
+                        將稽核/內控的專業知識與AI技術結合，發展「智能稽核」的進階應用。
+                        推動稽核職能從「事後查核」邁向「即時監控」與「預測預警」。
+                      </p>
+
+                      <div class="bg-white rounded-lg p-4 border border-blue-200 mb-4">
+                        <h5 class="font-semibold text-blue-700 mb-2">核心命題</h5>
+                        <p class="text-sm text-slate-custom-600">
+                          透過AI Agent持續分析流程數據，主動識別潛在風險徵兆，
+                          在問題發生前或發生初期即介入處理，而非等到事後查核才發現。
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">核心貢獻領域</h4>
+                      <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-3 border border-blue-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">AI Agent內控設計規範</h5>
+                          <p class="text-xs text-slate-custom-600">將ISO 27001/42001要求轉化為AI Agent設計規範，強化高度監管產業適用性</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-blue-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">智能稽核機制設計</h5>
+                          <p class="text-xs text-slate-custom-600">發展FlowMiner進階應用，從「流程可視化」邁向「風險預警自動化」</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-blue-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">稽核就緒性評估服務</h5>
+                          <p class="text-xs text-slate-custom-600">為客戶提供AI Agent導入前的稽核就緒性評估，創造新服務收入</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-blue-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">監理溝通支援</h5>
+                          <p class="text-xs text-slate-custom-600">協助客戶準備AI Agent相關的監理申報與查核應對文件</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Role 3 -->
+          <div id="role-3" class="mb-16">
+            <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-2xl p-8 border border-purple-200">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center mb-4">
+                    <h3 class="text-2xl font-bold text-slate-custom-800 mr-3">三選：AI治理與ISO標準整合策略師</h3>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">戰略層次</span>
+                  </div>
+
+                  <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">角色定位與戰略價值</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        <strong>「讓客戶敢用、願意規模化採用AI Agent」</strong>，
+                        透過建立系統性的治理框架，解決企業對AI「不可控」、「不可解釋」、「不可信任」的深層疑慮。
+                        層次更高、範圍更廣，需要更長的價值實現週期。
+                      </p>
+
+                      <div class="bg-white rounded-lg p-4 border border-purple-200 mb-4">
+                        <h5 class="font-semibold text-purple-700 mb-2">具體貢獻</h5>
+                        <ul class="text-sm text-slate-custom-600 space-y-1">
+                          <li>• 規劃ISO 42001與Flowring產品的整合路徑</li>
+                          <li>• 發展「認證就緒」的解決方案套件</li>
+                          <li>• 建立AI Agent風險分級框架</li>
+                          <li>• 協助發展「可信賴AI」市場定位</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">長期合作與生態建構</h4>
+                      <p class="text-slate-custom-600 mb-4">
+                        價值實現需要較長時間週期，但一旦建立，將形成深厚的競爭護城河。
+                        具體的長期合作方向包括：
+                      </p>
+
+                      <div class="space-y-3">
+                        <div class="bg-white rounded-lg p-3 border border-purple-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">方法論發展</h5>
+                          <p class="text-xs text-slate-custom-600">共同發展AI治理方法論，出版白皮書或產業指南</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-purple-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">標準推廣</h5>
+                          <p class="text-xs text-slate-custom-600">參與ISO 42001等國際標準的本土化推廣</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-purple-200">
+                          <h5 class="font-semibold text-slate-custom-700 text-sm mb-1">生態建構</h5>
+                          <p class="text-xs text-slate-custom-600">建構「AI治理顧問」生態系統，培訓Flowring內部團隊</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Questions Section -->
+      <section id="questions" class="py-16 bg-slate-custom-50">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">見面時應提問的五個問題</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              引導深度對話，從了解現況到探索合作可能
+            </p>
+          </div>
+
+          <div class="space-y-8">
+            <!-- Question 1 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-sage-600 to-sage-700 px-8 py-4">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                  <span class="bg-white text-sage-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+                  關於客戶落地挑戰
+                </h3>
+              </div>
+              <div class="p-8">
+                <div class="bg-slate-custom-50 rounded-lg p-6 border-l-4 border-sage-600 mb-6">
+                  <p class="text-lg font-medium text-slate-custom-800 mb-2">
+                    「在實際導入AI Agent的專案中，客戶最常卡住、最後決定不往下走的關卡通常是什麼？」
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">提問目的</h4>
+                  <p class="text-slate-custom-600 mb-4">
+                    探詢真實的業務阻力，而非技術問題的表面描述。技術挑戰通常有明確解決方案，
+                    但業務阻力（如預算核准困難、關鍵決策者不支持、組織變革抗拒）往往更為隱晦且難以處理。
+                  </p>
+
+                  <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                    <h5 class="font-semibold text-sage-700 mb-2">預期延伸討論</h5>
+                    <ul class="text-sm text-slate-custom-600 space-y-1">
+                      <li>• 預算編列的季節性模式與決策時點</li>
+                      <li>• IT部門與業務部門的協作動態</li>
+                      <li>• 高階主管對AI的認知差異與支持程度</li>
+                      <li>• 競爭對手的替代方案比較策略</li>
+                      <li>• Flowring如何評估客戶的「導入就緒度」</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-4">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                  <span class="bg-white text-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+                  關於價值傳遞策略
+                </h3>
+              </div>
+              <div class="p-8">
+                <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-600 mb-6">
+                  <p class="text-lg font-medium text-slate-custom-800 mb-2">
+                    「有沒有哪個產業或場景，你們發現AI Agent的價值特別難講清楚？後來怎麼突破的？」
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">提問目的</h4>
+                  <p class="text-slate-custom-600 mb-4">
+                    了解Flowring的市場教育經驗，尋找共同優化的空間。此問題直接對應拜訪者首選角色的核心價值——
+                    協助強化價值傳遞能力。
+                  </p>
+
+                  <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <h5 class="font-semibold text-blue-700 mb-2">預期延伸討論</h5>
+                    <ul class="text-sm text-slate-custom-600 space-y-1">
+                      <li>• 金融業的監管疑慮與合適性論證策略</li>
+                      <li>• 製造業的現場信任與變革管理挑戰</li>
+                      <li>• 服務業的客戶體驗與責任歸屬問題</li>
+                      <li>• 如何調整訊息傳遞方式與溝通策略</li>
+                      <li>• 發展標竿客戶證言或體驗式銷售流程</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-4">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                  <span class="bg-white text-purple-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+                  關於產品化與客製化平衡
+                </h3>
+              </div>
+              <div class="p-8">
+                <div class="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-600 mb-6">
+                  <p class="text-lg font-medium text-slate-custom-800 mb-2">
+                    「Flowring怎麼決定一個需求該做成標準功能，還是留在客製專案？這個判斷標準最近有沒有變化？」
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">提問目的</h4>
+                  <p class="text-slate-custom-600 mb-4">
+                    理解Flowring的商業模式演進，評估合作切入點。AI Agent時代的來臨可能加速「標準化—客製化」張力的複雜性——
+                    AI Agent的產業適配需要更深度的客製化，但規模化複製的商業壓力要求更高的標準化。
+                  </p>
+
+                  <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                    <h5 class="font-semibold text-purple-700 mb-2">預期延伸討論</h5>
+                    <ul class="text-sm text-slate-custom-600 space-y-1">
+                      <li>• 標準功能與客製服務的收入占比目標</li>
+                      <li>• 產業模板的發展經驗與挑戰</li>
+                      <li>• 合作夥伴生態在客製化交付中的角色</li>
+                      <li>• AI Agent技術對產品策略的影響</li>
+                      <li>• 低代碼/無代碼工具的投資策略</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-4">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                  <span class="bg-white text-orange-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">4</span>
+                  關於稽核與內控應用
+                </h3>
+              </div>
+              <div class="p-8">
+                <div class="bg-orange-50 rounded-lg p-6 border-l-4 border-orange-600 mb-6">
+                  <p class="text-lg font-medium text-slate-custom-800 mb-2">
+                    「FlowMiner已經幫客戶縮短稽核時間，但有沒有客戶問過：能不能讓AI直接『預判』哪個流程環節可能出問題，而不是事後追查？」
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">提問目的</h4>
+                  <p class="text-slate-custom-600 mb-4">
+                    試探Flowring對「智能稽核」發展意願，精準連結拜訪者的稽核/內控專長。
+                    此問題的設計基於對Flowring產品線的預先研究——FlowMiner作為流程挖掘工具，已解決流程可視化問題。
+                  </p>
+
+                  <div class="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                    <h5 class="font-semibold text-orange-700 mb-2">預期延伸討論</h5>
+                    <ul class="text-sm text-slate-custom-600 space-y-1">
+                      <li>• 客戶對預測性稽核的需求回饋</li>
+                      <li>• 技術實現的評估（異常檢測模型、風險評分演算法）</li>
+                      <li>• 產品發展的優先順序考量</li>
+                      <li>• 即時預警機制的設計挑戰</li>
+                      <li>• AI輔助決策的稽核軌跡留存與合規要求</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-custom-200 overflow-hidden">
+              <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-8 py-4">
+                <h3 class="text-xl font-bold text-white flex items-center">
+                  <span class="bg-white text-emerald-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">5</span>
+                  關於未來佈局與合作想像
+                </h3>
+              </div>
+              <div class="p-8">
+                <div class="bg-emerald-50 rounded-lg p-6 border-l-4 border-emerald-600 mb-6">
+                  <p class="text-lg font-medium text-slate-custom-800 mb-2">
+                    「如果Flowring要選一個還沒做深、但覺得潛力很大的方向，目前會是哪一塊？」
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-slate-custom-700 mb-3">提問目的</h4>
+                  <p class="text-slate-custom-600 mb-4">
+                    創造「我剛好補那一塊」的發現時刻，是整場對話的關鍵轉折點。
+                    此問題將對話從「了解現況」提升至「探索可能」，為後續的合作討論創造自然的銜接點。
+                  </p>
+
+                  <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+                    <h5 class="font-semibold text-emerald-700 mb-2">預期延伸討論</h5>
+                    <ul class="text-sm text-slate-custom-600 space-y-1">
+                      <li>• AI治理與合規認證（ISO 42001整合）</li>
+                      <li>• 特定產業（醫療、能源、政府）的深化策略</li>
+                      <li>• 國際市場（東南亞、日本）的拓展計劃</li>
+                      <li>• 新興技術（多模態AI、邊緣運算）的整合</li>
+                      <li>• 生態系統（SI合作夥伴、雲端平台）的建構</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Talking Points Section -->
+      <section id="talking-points" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">三分鐘開場話術</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              自然對話風格，避免推銷感，創造平等交流氛圍
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-r from-sage-50 to-emerald-50 rounded-2xl p-8 border border-sage-200">
+            <div class="space-y-6">
+              <!-- Part 1 -->
+              <div class="bg-white rounded-lg p-6 border-l-4 border-sage-600">
+                <h3 class="text-lg font-semibold text-slate-custom-800 mb-3 flex items-center">
+                  <i class="fas fa-handshake mr-3 text-sage-600"></i>
+                  開場破冰（30秒）
+                </h3>
+                <div class="bg-slate-custom-50 rounded-lg p-4 border border-slate-custom-200">
+                  <p class="text-slate-custom-700 leading-relaxed">
+                    「陳主管好，不好意思打擾您。我是[姓名]，之前在做AI應用規劃，也碰過不少財會營運和內控的專案。
+                    最近看到Flowring在AI Agent跟Hyper Automation的發展，覺得很有意思——
+                    特別是那個手工具廠月報表自動化的案例，從五天變兩小時，這種實際落地的成果蠻少見的。」
+                  </p>
+                </div>
+                <div class="mt-3 text-sm text-slate-custom-600">
+                  <strong>設計要點：</strong>簡短自我介紹，建立專業背景可信度；具體提及Flowring公開案例，展現事前準備；
+                  避免過度恭維，以「實際落地的成果」作為連結點。
+                </div>
+              </div>
+
+              <!-- Part 2 -->
+              <div class="bg-white rounded-lg p-6 border-l-4 border-blue-600">
+                <h3 class="text-lg font-semibold text-slate-custom-800 mb-3 flex items-center">
+                  <i class="fas fa-link mr-3 text-blue-600"></i>
+                  建立連結（60秒）
+                </h3>
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <p class="text-slate-custom-700 leading-relaxed">
+                    「我自己這幾年一直在想一個問題：AI技術講得再好，客戶最後買單的還是『這個能幫我賺錢還是省錢』。
+                    Flowring從BPM做到現在的AI Agent，我覺得厲害的地方是——你們不是從技術出發，而是從流程出發，這個差別很大。
+                    我過去在規劃AI導入的時候，最常卡住的地方反而是：技術團隊跟業務團隊講不同語言，最後做出來的東西沒人用。」
+                  </p>
+                </div>
+                <div class="mt-3 text-sm text-slate-custom-600">
+                  <strong>設計要點：</strong>提出「共鳴問題」——技術與業務的語言鴻溝；肯定Flowring的「流程導向」差異化定位；
+                  以自身經驗的「失敗」作為謙遜開場，降低對方防衛心。
+                </div>
+              </div>
+
+              <!-- Part 3 -->
+              <div class="bg-white rounded-lg p-6 border-l-4 border-emerald-600">
+                <h3 class="text-lg font-semibold text-slate-custom-800 mb-3 flex items-center">
+                  <i class="fas fa-comments mr-3 text-emerald-600"></i>
+                  表達來意與開放態度（90秒）
+                </h3>
+                <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+                  <p class="text-slate-custom-700 leading-relaxed">
+                    「所以今天來，其實沒有什麼特定的合作要談，主要是想跟您請教——Flowring在推AI Agent的過程中，
+                    有沒有發現客戶其實還有一些需求，是你們現有產品還沒完全覆蓋到的？或者有沒有哪個產業，
+                    你們覺得潛力很大，但還沒找到對的切入方式？我這邊有一些稽核、內控跟ISO規劃的背景，
+                    也在看AI怎麼跟這些領域結合。如果剛好有地方能幫上忙，或是有我可以學習的，都很想聽聽您的經驗。」
+                  </p>
+                </div>
+                <div class="mt-3 text-sm text-slate-custom-600">
+                  <strong>設計要點：</strong>明確「沒有特定合作要談」，降低銷售壓力；以開放式問題邀請對方分享真實挑戰；
+                  適時帶入自身背景但不強調「我能做什麼」；以「學習」作為收尾，強化平等互惠。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion Section -->
+      <section id="conclusion" class="py-16 bg-gradient-to-br from-slate-custom-100 to-sage-100">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-slate-custom-800 mb-4">核心策略：不是去談合作，不是去講AI</h2>
+            <p class="text-lg text-slate-custom-600 max-w-3xl mx-auto">
+              讓對方發現：「你剛好補他們還沒做深的那一塊」
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-2xl p-8 shadow-xl border border-sage-200">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-times text-white text-lg"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-custom-800">避免過早談合作</h3>
+              </div>
+              <p class="text-slate-custom-600 mb-4">
+                避免急於提案或推銷自身服務。過早的「我們可以一起做…」會讓對方進入評估模式，而非分享模式。
+                合作的機會應該在深度理解對方需求後，自然浮現。
+              </p>
+              <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                <p class="text-sm text-slate-custom-600">
+                  <strong>正確時機：</strong>在對話中後段，當對方主動提及挑戰時，自然回應：
+                  「這剛好是我最近在思考的方向…」
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-xl border border-sage-200">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-exclamation-triangle text-white text-lg"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-custom-800">避免炫耀技術知識</h3>
+              </div>
+              <p class="text-slate-custom-600 mb-4">
+                不炫耀技術知識或產業趨勢。對方是AI Agent的專業開發者，不需要另一個人來「教育」他們技術。
+                讓對方多說，自己多聽多問，才是建立信任的正確方式。
+              </p>
+              <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                <p class="text-sm text-slate-custom-600">
+                  <strong>正確態度：</strong>「我對你們在這個領域的專業很敬佩，想多了解你們的實際經驗…」
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-8 shadow-2xl border-2 border-sage-300">
+            <h3 class="text-2xl font-bold text-slate-custom-800 mb-6 text-center">創造「你剛好補那一塊」的自然頓悟</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-lg font-semibold text-slate-custom-700 mb-4">可能的缺口類型</h4>
+                <div class="space-y-3">
+                  <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                    <h5 class="font-semibold text-sage-700 mb-2">AI業務價值設計</h5>
+                    <p class="text-sm text-slate-custom-600">技術強、但ROI論證與產業模板不足</p>
+                  </div>
+                  <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                    <h5 class="font-semibold text-sage-700 mb-2">智能稽核深化</h5>
+                    <p class="text-sm text-slate-custom-600">FlowMiner停留在效率提升，未進入預測預警</p>
+                  </div>
+                  <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                    <h5 class="font-semibold text-sage-700 mb-2">ISO 42001整合</h5>
+                    <p class="text-sm text-slate-custom-600">AI治理框架尚未系統化</p>
+                  </div>
+                  <div class="bg-sage-50 rounded-lg p-4 border border-sage-200">
+                    <h5 class="font-semibold text-sage-700 mb-2">特定產業模板</h5>
+                    <p class="text-sm text-slate-custom-600">金融、醫療等高度監管產業的適配</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-semibold text-slate-custom-700 mb-4">對應背景優勢</h4>
+                <div class="space-y-3">
+                  <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                    <h5 class="font-semibold text-slate-custom-700 mb-2">AI應用規劃 + 財會/營運管理</h5>
+                    <p class="text-sm text-slate-custom-600">將技術語言轉譯為業務語言，建立ROI評估框架</p>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                    <h5 class="font-semibold text-slate-custom-700 mb-2">稽核/內控 + ISO 27001/42001</h5>
+                    <p class="text-sm text-slate-custom-600">發展智能稽核機制，建立預測性風控能力</p>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                    <h5 class="font-semibold text-slate-custom-700 mb-2">ISO 42001規劃經驗</h5>
+                    <p class="text-sm text-slate-custom-600">建立AI治理框架，提升可信賴AI市場定位</p>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 border border-slate-custom-200">
+                    <h5 class="font-semibold text-slate-custom-700 mb-2">財會/營運的產業知識</h5>
+                    <p class="text-sm text-slate-custom-600">針對高度監管產業發展專業解決方案</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 bg-sage-100 rounded-lg p-6 border border-sage-300">
+              <p class="text-center text-slate-custom-700 font-medium">
+                <i class="fas fa-lightbulb text-sage-600 mr-2"></i>
+                關鍵原則：讓「發現」的過程自然發生，而非直接推銷。
+                這種頓悟將為後續的關係建立與合作開展，奠定最堅實的基礎。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+        // Initialize Mermaid with custom configuration
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f6f6f4',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#7d7d5f',
+                lineColor: '#64748b',
+                secondaryColor: '#e8e8e3',
+                tertiaryColor: '#f8fafc',
+                background: '#ffffff',
+                mainBkg: '#f6f6f4',
+                secondBkg: '#e8e8e3',
+                tertiaryBkg: '#f8fafc',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            securityLevel: 'loose'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 雙指縮放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 雙指縮放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置狀態
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Table of Contents functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id], div[id]');
+            
+            // Smooth scrolling for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active TOC link on scroll
+            function updateActiveTocLink() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + sectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveTocLink);
+            updateActiveTocLink(); // Initial call
+            
+            // Initialize mermaid controls
+            initializeMermaidControls();
+        });
+    </script>
+  
+
+</body></html>
